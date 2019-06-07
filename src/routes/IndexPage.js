@@ -4,9 +4,9 @@ import styles from './IndexPage.css';
 import request from  '../utils/request';
 import $ from 'jquery';
 
-@connect(({ input }) => ({
-  input
-}))
+// @connect(({ input }) => ({
+//   input
+// }))
 
 class IndexPage extends React.Component {
   constructor(){
@@ -47,7 +47,6 @@ class IndexPage extends React.Component {
   }
 
   handleClick =(e)=>{
-    console.log(e.target.value)
   this.refs.input.innerHTML=e.target.value;
   this.setState({
     arr:[]
