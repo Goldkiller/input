@@ -1,2 +1,12 @@
-{
+ {
+    "extraBabelPlugins": [
+        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+      ],
+    "proxy": {
+        "/api": {
+        "target": "https://suggest.taobao.com/sug",
+        "changeOrigin": true,
+        "pathRewrite": { "^/api" : "" }
+        }
+    }
 }

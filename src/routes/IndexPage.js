@@ -2,12 +2,10 @@ import React from 'react';
 import dva, { connect } from 'dva';
 import styles from './IndexPage.css';
 import request from  '../utils/request';
-import $ from 'jquery';
 
-// @connect(({ input }) => ({
-//   input
-// }))
-
+@connect(({input }) => ({
+  input
+}))
 class IndexPage extends React.Component {
   constructor(){
     super();
@@ -20,19 +18,10 @@ class IndexPage extends React.Component {
 
   handleChange = (e)=>{
     const result=this.refs.input.value;
-    $.ajax({
-      dataType: "jsonp",
-      url:`https://suggest.taobao.com/sug?code=utf-8&q=${result}&_ksTS=1559839722486_838&callback=jsonp839&k=1&area=c2c&bucketid=11`,
-      success:data =>{
-        this.setState({
-          arr:data.result    
-      })
-      },
+    this.props.dispatch({
+      type:'input/fetch',
+      payload:result,
     })
-    // this.props.dispatch({
-    //   type:'input/fetch',
-    //   payload:result,
-    // })
   }
 
 
@@ -48,12 +37,11 @@ class IndexPage extends React.Component {
 
   handleClick =(e)=>{
   this.refs.input.innerHTML=e.target.value;
-  this.setState({
-    arr:[]
-  })
+  // window.open()
   }
 
   render(){
+    const {data}=this.props.input;
     return (
       <div className={styles.normal}>
         <input 
@@ -65,7 +53,7 @@ class IndexPage extends React.Component {
         />
         <button className={styles.formControl}>搜索</button>
         <ul className={styles.listGroup}>
-            {this.state.arr.map((item,key)=>{
+            {data && data.map((item,key)=>{
                 return  <li 
                     onClick={(e)=>this.handleClick(e)} 
                     onMouseEnter={(event)=>this.handleMouseEnter(key,item,event)} 

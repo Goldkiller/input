@@ -1,25 +1,9 @@
 {
-    "entry": "src/index.js",
-  "proxy": {
-    "/api": {
-      "target": "https://bond.jikeyun.net/index.php/interfaces/",
-      "changeOrigin": true,
-      "pathRewrite": { "^/api" : "" }
-    }
-  },
-  "env": {
-    "development": {
-      "extraBabelPlugins": [
-        "dva-hmr",
-        "transform-runtime",
-        ["import", { "libraryName": "antd", "style": "css" }]
-      ]
-    },
-    "production": {
-      "extraBabelPlugins": [
-        "transform-runtime",
-        ["import", { "libraryName": "antd", "style": "css" }]
-      ]
-    }
-  }
+     "proxy": {
+         "/api": {
+           "target": "https://suggest.taobao.com/sug",
+           "changeOrigin": true,
+           "pathRewrite": { "^/api" : "" }
+         }
+       },
 }
